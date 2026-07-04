@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fa-yoshinobu/plc-comm-computerlink-profiles/schema/toyopuc_profiles.schema.json",
+  "title": "TOYOPUC Computer Link profiles",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "date",
+    "scope",
+    "description",
+    "profiles"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "date": {
+      "type": "string"
+    },
+    "scope": {
+      "const": "toyopuc-computerlink"
+    },
+    "description": {
+      "type": "string"
+    },
+    "policy": {
+      "type": "object"
+    },
+    "evidence_files": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "profiles": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/profile"
+      }
+    }
+  },
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "required": [
+        "display_name",
+        "addressing_options",
+        "areas"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "addressing_options": {
+          "$ref": "#/$defs/addressing_options"
+        },
+        "areas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/area"
+          }
+        }
+      }
+    },
+    "addressing_options": {
+      "type": "object",
+      "required": [
+        "use_upper_u_pc10",
+        "use_eb_pc10",
+        "use_fr_pc10",
+        "use_upper_bit_pc10",
+        "use_upper_m_bit_pc10"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "use_upper_u_pc10": { "type": "boolean" },
+        "use_eb_pc10": { "type": "boolean" },
+        "use_fr_pc10": { "type": "boolean" },
+        "use_upper_bit_pc10": { "type": "boolean" },
+        "use_upper_m_bit_pc10": { "type": "boolean" }
+      }
+    },
+    "range": {
+      "type": "object",
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "area": {
+      "type": "object",
+      "required": [
+        "area",
+        "direct_ranges",
+        "prefixed_ranges",
+        "supports_packed_word",
+        "address_width",
+        "suggested_start_step"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "area": {
+          "type": "string",
+          "minLength": 1
+        },
+        "direct_ranges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/range" }
+        },
+        "prefixed_ranges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/range" }
+        },
+        "supports_packed_word": {
+          "type": "boolean"
+        },
+        "address_width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "suggested_start_step": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "packed_direct_ranges_override": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/range" }
+        },
+        "packed_prefixed_ranges_override": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/range" }
+        }
+      }
+    }
+  }
+}
+
