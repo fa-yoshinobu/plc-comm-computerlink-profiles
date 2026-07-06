@@ -31,3 +31,9 @@ PLC evidence.
 Keep verification logs and decision records in `evidence/`, not in generated
 user tables.
 
+Generated user-facing profile tables follow the shared style defined by the
+SLMP profile repository:
+https://github.com/fa-yoshinobu/plc-comm-slmp-profiles/blob/main/docs/tables_style.md
+
+Keep style changes in `tools/generate_profile_tables.py`; do not hand-edit
+files under `tables/`.
