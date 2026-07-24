@@ -14,8 +14,6 @@ OPTION_KEYS = {
     "use_upper_u_pc10",
     "use_eb_pc10",
     "use_fr_pc10",
-    "use_upper_bit_pc10",
-    "use_upper_m_bit_pc10",
 }
 
 

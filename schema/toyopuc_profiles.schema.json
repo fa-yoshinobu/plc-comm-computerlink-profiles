@@ -73,17 +73,13 @@
       "required": [
         "use_upper_u_pc10",
         "use_eb_pc10",
-        "use_fr_pc10",
-        "use_upper_bit_pc10",
-        "use_upper_m_bit_pc10"
+        "use_fr_pc10"
       ],
       "additionalProperties": false,
       "properties": {
         "use_upper_u_pc10": { "type": "boolean" },
         "use_eb_pc10": { "type": "boolean" },
-        "use_fr_pc10": { "type": "boolean" },
-        "use_upper_bit_pc10": { "type": "boolean" },
-        "use_upper_m_bit_pc10": { "type": "boolean" }
+        "use_fr_pc10": { "type": "boolean" }
       }
     },
     "range": {
@@ -151,4 +147,3 @@
     }
   }
 }
-

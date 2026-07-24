@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### BREAKING
+
+- Data: Removed obsolete command upper-bit flags and derived response routes from the schema, canonical profiles, generated reference tables, and validation tools. Implementations must use structural command/response classification.
+
 ## [1.0.3] - 2026-07-13
 
 ### Fixed
