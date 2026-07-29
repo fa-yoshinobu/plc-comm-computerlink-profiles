@@ -68,5 +68,5 @@ available until all downstream libraries have migrated.
 | Item | Value |
 | --- | --- |
 | License | [MIT](LICENSE) |
-| Canonical data tag | `v1.0.0` or later |
+| Canonical data tag | Latest tagged release |
 
