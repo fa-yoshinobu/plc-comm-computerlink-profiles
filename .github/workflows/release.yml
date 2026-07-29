@@ -1,0 +1,92 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Existing release tag version without the leading v"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve release version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            version="${{ inputs.version }}"
+            tag="v${version}"
+          else
+            tag="${GITHUB_REF_NAME}"
+            version="${tag#v}"
+          fi
+          if [[ ! "${version}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Invalid release version: ${version}"
+            exit 1
+          fi
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+          echo "tag=${tag}" >> "${GITHUB_OUTPUT}"
+
+      - name: Check out release tag
+        uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ steps.version.outputs.tag }}
+
+      - name: Verify exact release tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual_tag="$(git describe --tags --exact-match)"
+          test "${actual_tag}" = "${{ steps.version.outputs.tag }}"
+
+      - name: Validate profiles
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run profile checks
+        run: |
+          python tools/validate_profiles.py
+          python tools/generate_profile_tables.py --check
+
+      - name: Create or update GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${{ steps.version.outputs.tag }}"
+          version="${{ steps.version.outputs.version }}"
+          header="## [${version}]"
+          if ! changelog_notes="$(
+            awk -v header="${header}" '
+              index($0, header) == 1 { capture = 1 }
+              capture && /^## \[/ && index($0, header) != 1 { exit }
+              capture { print }
+              END { if (!capture) exit 1 }
+            ' CHANGELOG.md
+          )"; then
+            echo "::error::CHANGELOG.md is missing release section ${header}."
+            exit 1
+          fi
+          test -n "${changelog_notes}"
+          title="ComputerLink profiles ${tag}"
+          if gh release view "${tag}" --repo "${GITHUB_REPOSITORY}" > /dev/null 2>&1; then
+            current_body="$(gh release view "${tag}" --repo "${GITHUB_REPOSITORY}" --json body --jq .body)"
+            if ! grep -Fq -- "${header}" <<<"${current_body}"; then
+              notes_file="${RUNNER_TEMP}/release-notes-${version}.md"
+              printf '%s\n\n%s\n' "${changelog_notes}" "${current_body}" > "${notes_file}"
+              gh release edit "${tag}" --repo "${GITHUB_REPOSITORY}" --title "${title}" --notes-file "${notes_file}"
+            fi
+          else
+            gh release create "${tag}" --repo "${GITHUB_REPOSITORY}" --title "${title}" --notes "${changelog_notes}" --generate-notes --verify-tag --draft
+          fi
