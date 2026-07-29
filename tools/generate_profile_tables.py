@@ -28,16 +28,6 @@ OPTION_DEFINITIONS = [
         "FR via PC10",
         "Uses the PC10 FR block and commit-capable path for the FR area where the profile exposes FR.",
     ),
-    (
-        "use_upper_bit_pc10",
-        "Upper prefixed bits via PC10",
-        "Allows upper prefixed bit ranges such as the 1000-series P/V/T/C/L ranges through PC10-derived addressing.",
-    ),
-    (
-        "use_upper_m_bit_pc10",
-        "Upper M bits via PC10",
-        "Allows the upper M bit range through PC10-derived addressing.",
-    ),
 ]
 
 

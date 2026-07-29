@@ -14,19 +14,19 @@ They do not prove that every address will be accepted by a connected PLC; the ac
 
 ## Profile Summary
 
-| Profile ID | Display name | Area count | Upper U via PC10 | EB via PC10 | FR via PC10 | Upper prefixed bits via PC10 | Upper M bits via PC10 | Verified models |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| toyopuc:generic | TOYOPUC Generic | 32 | yes | yes | yes | yes | yes | Unconfirmed |
-| toyopuc:plus:standard | TOYOPUC Plus (standard) | 25 | no | no | no | no | no | Unconfirmed |
-| toyopuc:plus:extended | TOYOPUC Plus (extended) | 29 | no | no | no | no | no | Unconfirmed |
-| toyopuc:nano-10gx:native | TOYOPUC Nano 10GX (native) | 31 | yes | yes | yes | yes | yes | Unconfirmed |
-| toyopuc:nano-10gx:compatible | TOYOPUC Nano 10GX (compatible) | 31 | yes | yes | yes | yes | yes | Unconfirmed |
-| toyopuc:pc10g:standard-pc3jg | TOYOPUC PC10G (standard PC3JG) | 31 | no | yes | no | no | no | Unconfirmed |
-| toyopuc:pc10g:pc10 | TOYOPUC PC10G (PC10) | 32 | yes | yes | yes | yes | yes | Unconfirmed |
-| toyopuc:pc3jx:pc3-separate | TOYOPUC PC3JX (PC3 separate) | 27 | no | no | no | no | no | Unconfirmed |
-| toyopuc:pc3jx:plus-expansion | TOYOPUC PC3JX (Plus expansion) | 29 | no | no | no | no | no | Unconfirmed |
-| toyopuc:pc3jg:pc3jg | TOYOPUC PC3JG (PC3JG) | 31 | no | yes | no | no | no | Unconfirmed |
-| toyopuc:pc3jg:pc3-separate | TOYOPUC PC3JG (PC3 separate) | 31 | no | no | no | no | no | Unconfirmed |
+| Profile ID | Display name | Area count | Upper U via PC10 | EB via PC10 | FR via PC10 | Verified models |
+| --- | --- | --- | --- | --- | --- | --- |
+| toyopuc:generic | TOYOPUC Generic | 32 | yes | yes | yes | Unconfirmed |
+| toyopuc:plus:standard | TOYOPUC Plus (standard) | 25 | no | no | no | Unconfirmed |
+| toyopuc:plus:extended | TOYOPUC Plus (extended) | 29 | no | no | no | Unconfirmed |
+| toyopuc:nano-10gx:native | TOYOPUC Nano 10GX (native) | 31 | yes | yes | yes | Unconfirmed |
+| toyopuc:nano-10gx:compatible | TOYOPUC Nano 10GX (compatible) | 31 | yes | yes | yes | Unconfirmed |
+| toyopuc:pc10g:standard-pc3jg | TOYOPUC PC10G (standard PC3JG) | 31 | no | yes | no | Unconfirmed |
+| toyopuc:pc10g:pc10 | TOYOPUC PC10G (PC10) | 32 | yes | yes | yes | Unconfirmed |
+| toyopuc:pc3jx:pc3-separate | TOYOPUC PC3JX (PC3 separate) | 27 | no | no | no | Unconfirmed |
+| toyopuc:pc3jx:plus-expansion | TOYOPUC PC3JX (Plus expansion) | 29 | no | no | no | Unconfirmed |
+| toyopuc:pc3jg:pc3jg | TOYOPUC PC3JG (PC3JG) | 31 | no | yes | no | Unconfirmed |
+| toyopuc:pc3jg:pc3-separate | TOYOPUC PC3JG (PC3 separate) | 31 | no | no | no | Unconfirmed |
 
 ## Addressing Option Definitions
 
@@ -35,8 +35,6 @@ They do not prove that every address will be accepted by a connected PLC; the ac
 | Upper U via PC10 | use_upper_u_pc10 | Allows the upper U range through PC10 addressing when the selected profile exposes that range. |
 | EB via PC10 | use_eb_pc10 | Uses the PC10 extended addressing path for the EB area where the profile exposes EB. |
 | FR via PC10 | use_fr_pc10 | Uses the PC10 FR block and commit-capable path for the FR area where the profile exposes FR. |
-| Upper prefixed bits via PC10 | use_upper_bit_pc10 | Allows upper prefixed bit ranges such as the 1000-series P/V/T/C/L ranges through PC10-derived addressing. |
-| Upper M bits via PC10 | use_upper_m_bit_pc10 | Allows the upper M bit range through PC10-derived addressing. |
 
 ## Appendix: How To Read Cells
 
