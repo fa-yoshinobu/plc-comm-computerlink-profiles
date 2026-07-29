@@ -18,6 +18,23 @@ Ranges are catalog data for profile selection, UI address pickers, and
 application-layer checks. The actual PLC model, link route, project settings,
 and run/write permission can still reject a request.
 
+## Verified hardware available for validation
+
+The maintainer owns the hardware listed below. Communication has been verified
+on this hardware, and it is available for focused reproduction and validation
+when a problem is reported.
+
+"Verified" does not mean that every library feature has been tested on every
+listed PLC or module. Exhaustively testing every combination would require a
+prohibitive amount of work.
+
+| PLC family or unit group | Hardware owned by the maintainer |
+| --- | --- |
+| TOYOPUC Nano | `Nano 10GX`, `Nano 2ET` |
+| TOYOPUC Plus | `Plus CPU`, `Plus EX2` |
+| TOYOPUC PC10G | `PC10G-1SP`, `PC10G`, `EF10`, `2PORT-EFR` |
+| TOYOPUC PC3J | `PC3JX-D`, `PC3JG` |
+
 ## Supported PLC Profiles
 
 - `toyopuc:generic`
