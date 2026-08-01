@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-02",
+  "scope": "toyopuc-computerlink",
+  "description": "Negative fixture: unknown profile properties must be rejected.",
+  "profiles": {
+    "toyopuc:negative-fixture": {
+      "display_name": "Negative fixture",
+      "addressing_options": {
+        "use_upper_u_pc10": false,
+        "use_eb_pc10": false,
+        "use_fr_pc10": false
+      },
+      "areas": [
+        {
+          "area": "D",
+          "direct_ranges": [],
+          "prefixed_ranges": [],
+          "supports_packed_word": false,
+          "address_width": 4,
+          "suggested_start_step": 1
+        }
+      ],
+      "unknown_contract_field": true
+    }
+  }
+}

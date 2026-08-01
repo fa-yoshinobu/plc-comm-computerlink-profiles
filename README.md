@@ -62,9 +62,15 @@ prohibitive amount of work.
 Do not edit generated table files by hand.
 
 ```powershell
+python -m pip install jsonschema
+python tools/validate_schema.py
 python tools/validate_profiles.py
 python tools/generate_profile_tables.py
 ```
+
+Schema validation checks both the schema document and the canonical catalog. The handwritten
+validator then enforces semantic constraints such as ordered ranges that JSON Schema does not
+express here.
 
 Use `--check` in CI to fail when generated tables are stale.
 
