@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Tooling: CI now validates the published JSON Schema itself and the canonical profile catalog
   against it, with a maintained negative fixture proving that undeclared profile fields fail.
+- Tooling: Handwritten profile validation now rejects reversed, duplicate, and overlapping range
+  lists while leaving the canonical profile JSON and generated reference tables unchanged.
 
 ## [1.0.4] - 2026-07-29
 
