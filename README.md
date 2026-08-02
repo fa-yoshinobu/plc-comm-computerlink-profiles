@@ -69,8 +69,8 @@ python tools/generate_profile_tables.py
 ```
 
 Schema validation checks both the schema document and the canonical catalog. The handwritten
-validator then enforces semantic constraints such as ordered ranges that JSON Schema does not
-express here.
+validator then enforces semantic constraints such as strictly ascending, non-overlapping ranges
+that JSON Schema does not express here.
 
 Use `--check` in CI to fail when generated tables are stale.
 

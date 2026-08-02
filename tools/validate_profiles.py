@@ -36,11 +36,18 @@ def require(condition: bool, message: str) -> None:
 
 
 def validate_ranges(profile_id: str, area: str, field: str, ranges: list[dict[str, int]]) -> None:
+    previous_end: int | None = None
     for index, range_value in enumerate(ranges):
         start = range_value.get("start")
         end = range_value.get("end")
         require(isinstance(start, int) and isinstance(end, int), f"{profile_id}/{area}/{field}[{index}]: bad range")
         require(0 <= start <= end, f"{profile_id}/{area}/{field}[{index}]: start must be <= end")
+        if previous_end is not None:
+            require(
+                start > previous_end,
+                f"{profile_id}/{area}/{field}[{index}]: ranges must be strictly ordered and non-overlapping",
+            )
+        previous_end = end
 
 
 def validate_catalog(payload: dict[str, Any]) -> None:
