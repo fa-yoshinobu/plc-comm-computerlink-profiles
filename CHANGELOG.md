@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-08-07
+
+- Release: Prepared the approved tooling/documentation patch release `1.0.5`.
+- Tooling: Expanded schema self-validation, canonical-catalog validation, negative fixtures, and handwritten range validation tests.
+- Docs: Updated maintainer validation evidence. The canonical profile JSON, published JSON Schema contract, and generated reference-table data are unchanged from `v1.0.4`.
+
 ### Fixed
 
 - Tooling: CI now validates the published JSON Schema itself and the canonical profile catalog
