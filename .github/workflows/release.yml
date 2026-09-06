@@ -37,7 +37,7 @@ jobs:
           echo "tag=${tag}" >> "${GITHUB_OUTPUT}"
 
       - name: Check out release tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: refs/tags/${{ steps.version.outputs.tag }}
 
@@ -49,7 +49,7 @@ jobs:
           test "${actual_tag}" = "${{ steps.version.outputs.tag }}"
 
       - name: Validate profiles
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.x"
 
