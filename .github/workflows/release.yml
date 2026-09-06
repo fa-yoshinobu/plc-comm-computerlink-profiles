@@ -48,15 +48,19 @@ jobs:
           actual_tag="$(git describe --tags --exact-match)"
           test "${actual_tag}" = "${{ steps.version.outputs.tag }}"
 
-      - name: Validate profiles
+      - name: Set up Python
         uses: actions/setup-python@v7
         with:
           python-version: "3.x"
 
-      - name: Run profile checks
-        run: |
-          python tools/validate_profiles.py
-          python tools/generate_profile_tables.py --check
+      # The same checks Validate runs on a pull request, so a tag cannot publish
+      # profile data that would not have passed review. Schema validation and the
+      # unit tests were previously missing here.
+      - run: python -m pip install jsonschema
+      - run: python tools/validate_schema.py
+      - run: python tools/validate_profiles.py
+      - run: python tools/generate_profile_tables.py --check
+      - run: python -m unittest discover -s tests -p "test_*.py"
 
       - name: Create or update GitHub release
         env:
